@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petição Rápida Pro</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .hidden-view { display: none !important; }
+    .animate-spin { animation: spin 1s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    
+    /* Animação da barra de progresso do Login */
+    @keyframes progress {
+        0% { width: 0%; }
+        40% { width: 60%; }
+        80% { width: 85%; }
+        100% { width: 100%; }
+    }
+    .animate-progress {
+        animation: progress 2.5s ease-in-out forwards;
+    }
+
+    /* Scrollbar suave */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 selection:bg-blue-200 selection:text-blue-900">
+
+  <div id="landing-view" class="min-h-screen flex flex-col">
+    <header class="bg-white/80 backdrop-blur-md shadow-sm px-8 py-4 flex justify-between items-center fixed top-0 w-full z-50">
+      <div class="flex items-center gap-2 text-2xl font-bold text-slate-900 cursor-pointer">
+        <i data-lucide="scale" class="text-blue-600"></i>
+        <span>Petição Rápida <span class="text-blue-600 font-extrabold">Pro</span></span>
+      </div>
+      <div class="space-x-4">
+        <button onclick="switchView('login-view')" class="text-slate-600 hover:text-blue-600 font-medium transition">Entrar</button>
+        <button onclick="switchView('login-view')" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition duration-200">Assinar Agora</button>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl mx-auto px-8 pt-40 pb-20 flex flex-col items-center text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-medium text-sm mb-8 border border-blue-100">
+        <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span></span>
+        A nova era da advocacia inteligente chegou
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold text-slate-950 mb-8 leading-tight tracking-tight">
+        Sua petição completa em segundos <br /> com a IA que <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">lê o processo.</span>
+      </h1>
+      <p class="text-xl text-slate-600 mb-12 max-w-3xl leading-relaxed">
+        Basta fazer upload dos autos, digitar 3 linhas sobre o que deseja pedir e nossa Inteligência Artificial redige a peça perfeita no rigoroso padrão do Novo CPC.
+      </p>
+      <button onclick="switchView('login-view')" class="bg-slate-950 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:bg-slate-800 transition duration-200 flex items-center gap-3 mb-32 shadow-xl hover:-translate-y-1">
+        Começar meu primeiro caso <i data-lucide="arrow-right"></i>
+      </button>
+
+      <div class="w-full mb-32">
+        <h2 class="text-3xl font-bold text-slate-900 mb-16">Como o Petição Rápida Pro funciona?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div class="flex flex-col items-center text-center group">
+            <div class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600 group-hover:scale-110 transition duration-300">
+              <i data-lucide="upload-cloud" class="w-10 h-10"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">1. Envie os Autos</h3>
+            <p class="text-slate-600">Faça o upload do PDF do processo. Nossa IA processa e entende todo o histórico, fatos e datas instantaneamente.</p>
+          </div>
+          <div class="flex flex-col items-center text-center group">
+            <div class="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 group-hover:scale-110 transition duration-300">
+              <i data-lucide="message-square-text" class="w-10 h-10"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">2. Dê a Instrução</h3>
+            <p class="text-slate-600">Escreva em poucas palavras qual peça você precisa e qual a sua tese principal (ex: pedir danos morais de 10k).</p>
+          </div>
+          <div class="flex flex-col items-center text-center group">
+            <div class="w-20 h-20 bg-green-50 rounded-2xl flex items-center justify-center mb-6 text-green-600 group-hover:scale-110 transition duration-300">
+              <i data-lucide="file-check-2" class="w-10 h-10"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">3. Petição Pronta</h3>
+            <p class="text-slate-600">Em segundos, receba a petição completa, estruturada e fundamentada, pronta para exportar e protocolar.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="login-view" class="hidden-view min-h-screen bg-slate-50 flex items-center justify-center p-6 relative overflow-hidden">
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-400/20 blur-[100px] rounded-full"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-indigo-400/20 blur-[100px] rounded-full"></div>
+
+    <div class="bg-white p-12 rounded-[2.5rem] shadow-2xl w-full max-w-lg border border-slate-100 relative z-10">
+      <div class="flex justify-center mb-8">
+        <div class="bg-blue-50 p-4 rounded-full">
+            <i data-lucide="scale" class="text-blue-600 w-10 h-10"></i>
+        </div>
+      </div>
+      <h2 class="text-3xl font-extrabold text-center text-slate-950 mb-2">Área do Advogado</h2>
+      <p class="text-center text-slate-500 mb-10">Acesse sua conta para gerar petições.</p>
+      <form onsubmit="handleLogin(event)" class="space-y-6">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-2">E-mail Profissional</label>
+          <input type="email" class="w-full border-2 border-slate-100 bg-slate-50 rounded-xl p-4 focus:ring-2 focus:ring-blue-600 focus:outline-none transition font-medium" placeholder="advogado@escritorio.com" required />
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-2">Senha</label>
+          <input type="password" class="w-full border-2 border-slate-100 bg-slate-50 rounded-xl p-4 focus:ring-2 focus:ring-blue-600 focus:outline-none transition font-medium" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="w-full bg-slate-950 text-white py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition duration-200 mt-4 shadow-xl flex items-center justify-center gap-2">
+          Entrar no Sistema <i data-lucide="log-in" class="w-5 h-5"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="transition-view" class="hidden-view min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full"></div>
+
+    <div class="relative z-10 flex flex-col items-center">
+        <div class="w-24 h-24 bg-slate-900 border border-slate-800 rounded-3xl flex items-center justify-center mb-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 border-2 border-transparent border-t-blue-500 rounded-3xl animate-spin"></div>
+            <i data-lucide="scale" class="text-blue-500 w-12 h-12 relative z-10"></i>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-white mb-3">Autenticando acesso...</h2>
+        <p id="transition-text" class="text-blue-400 font-medium text-sm transition-all duration-300">Estabelecendo conexão segura com o servidor</p>
+        
+        <div class="w-72 h-1.5 bg-slate-800 rounded-full mt-10 overflow-hidden shadow-inner">
+            <div id="progress-bar" class="h-full bg-blue-500 rounded-full w-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+        </div>
+    </div>
+  </div>
+
+  <div id="dashboard-view" class="hidden-view min-h-screen bg-slate-100 flex">
+    <aside class="w-72 bg-slate-950 text-slate-300 flex flex-col p-6 fixed h-screen top-0 left-0 z-20">
+      <div class="flex items-center gap-3 text-2xl font-bold mb-10 mt-4 text-white px-2">
+        <i data-lucide="scale" class="text-blue-500"></i> Petição Rápida
+      </div>
+      <nav class="flex-1 space-y-2">
+        <button class="w-full flex items-center gap-3 px-4 py-3.5 bg-blue-600/10 text-blue-400 rounded-xl font-bold transition">
+          <i data-lucide="wand-2" class="w-5 h-5"></i> Nova Petição
+        </button>
+      </nav>
+      <div class="mt-auto border-t border-slate-800 pt-6">
+        <button onclick="switchView('landing-view')" class="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition font-medium">
+          <i data-lucide="log-out" class="w-5 h-5"></i> Sair do sistema
+        </button>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-8 ml-72 overflow-y-auto h-screen">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-8 flex justify-between items-center">
+          <div>
+              <h2 class="text-2xl font-extrabold text-slate-900">Gerador de Petições</h2>
+              <p class="text-slate-500 font-medium text-sm mt-1">Preencha os dados abaixo para redigir uma nova peça com contexto.</p>
+          </div>
+      </div>
+      
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 h-[calc(100vh-200px)]">
+        <div class="xl:col-span-5 flex flex-col gap-6 h-full">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col h-full">
+                
+                <div class="border-2 border-dashed border-slate-300 rounded-2xl p-10 flex flex-col items-center justify-center text-center hover:bg-blue-50 hover:border-blue-400 transition duration-200 mb-8 group cursor-pointer">
+                    <div class="bg-slate-100 p-4 rounded-full mb-4 group-hover:bg-blue-100 transition">
+                        <i data-lucide="cloud-upload" class="text-slate-500 w-8 h-8 group-hover:text-blue-600"></i>
+                    </div>
+                    <p class="font-bold text-slate-900 text-lg">Faça upload dos Autos</p>
+                    <p class="text-sm text-slate-500 mt-1 font-medium">Arraste o PDF ou clique aqui</p>
+                </div>
+
+                <label class="block font-bold text-slate-900 mb-2">Comando para a Inteligência Artificial:</label>
+                <div class="bg-blue-50 border border-blue-100 text-blue-800 text-xs p-3 rounded-lg mb-4 flex gap-2 items-start">
+                    <i data-lucide="info" class="w-4 h-4 mt-0.5 shrink-0 text-blue-500"></i>
+                    <p>Seja específico. Ex: "Faça uma inicial de divórcio pedindo pensão..."</p>
+                </div>
+                
+                <textarea id="ai-instruction" class="flex-1 w-full border-2 border-slate-200 bg-slate-50 rounded-xl p-5 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none mb-8 resize-none transition text-sm font-medium" placeholder="Digite aqui o que você deseja pedir nesta petição..."></textarea>
+
+                <button id="btn-generate" onclick="generatePetition()" class="w-full py-4 rounded-xl font-bold text-lg transition duration-200 flex justify-center items-center gap-2.5 bg-slate-950 text-white hover:bg-slate-800 shadow-lg mt-auto">
+                    <span id="btn-icon"><i data-lucide="sparkles" class="w-5 h-5 text-blue-400"></i></span> Gerar Peça Completa
+                </button>
+            </div>
+        </div>
+
+        <div class="xl:col-span-7 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 h-full flex flex-col relative">
+          <div class="flex justify-between items-center mb-6 pb-5 border-b border-slate-100">
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2.5"><i data-lucide="file-text" class="text-slate-400 w-5 h-5"></i> Documento Gerado</h3>
+            <div id="result-actions" class="hidden gap-3">
+              <button onclick="copyResultText()" class="text-sm px-4 py-2 bg-white border border-slate-200 shadow-sm text-slate-700 rounded-lg hover:bg-slate-50 flex items-center gap-2 font-bold transition"><i data-lucide="copy" class="w-4 h-4"></i> Copiar</button>
+              <button onclick="exportResultDocx()" class="text-sm px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-md flex items-center gap-2 font-bold transition"><i data-lucide="download" class="w-4 h-4"></i> Word (.docx)</button>
+            </div>
+          </div>
+
+          <div id="empty-state" class="flex-1 flex items-center justify-center text-center flex-col gap-4">
+            <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center border border-slate-100">
+                <i data-lucide="file-search-2" class="w-10 h-10 text-slate-300"></i>
+            </div>
+            <div>
+                <p class="font-bold text-slate-600 text-lg">Nenhuma peça gerada ainda</p>
+                <p class="text-slate-400 text-sm mt-1">Preencha os dados ao lado e clique em gerar.</p>
+            </div>
+          </div>
+
+          <div id="loading-state" class="hidden-view flex-1 flex items-center justify-center text-center flex-col gap-6">
+             <i data-lucide="loader-2" class="w-12 h-12 animate-spin text-blue-600"></i>
+             <div>
+                <p class="font-bold text-slate-900 text-xl">A IA está trabalhando...</p>
+                <p class="text-slate-500 font-medium mt-2">Lendo autos e fundamentando a peça jurídica.</p>
+             </div>
+          </div>
+
+          <div id="generated-content" class="hidden-view flex-1 overflow-y-auto pr-4 text-[15px] text-slate-800 leading-relaxed font-serif bg-white">
+            </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Controle de Telas
+    function switchView(targetId) {
+      document.getElementById('landing-view').classList.add('hidden-view');
+      document.getElementById('login-view').classList.add('hidden-view');
+      document.getElementById('transition-view').classList.add('hidden-view');
+      document.getElementById('dashboard-view').classList.add('hidden-view');
+      
+      document.getElementById(targetId).classList.remove('hidden-view');
+      window.scrollTo(0, 0);
+    }
+
+    // Animação de Login Falsa
+    function handleLogin(event) {
+      event.preventDefault();
+      switchView('transition-view');
+      
+      const progressBar = document.getElementById('progress-bar');
+      progressBar.classList.remove('animate-progress');
+      void progressBar.offsetWidth;
+      progressBar.classList.add('animate-progress');
+
+      const transitionText = document.getElementById('transition-text');
+      setTimeout(() => { transitionText.innerText = "Descriptografando ambiente de trabalho..."; }, 800);
+      setTimeout(() => { transitionText.innerText = "Carregando Inteligência Artificial Jurídica..."; }, 1600);
+      
+      setTimeout(() => {
+        switchView('dashboard-view');
+        setTimeout(() => { transitionText.innerText = "Estabelecendo conexão segura com o servidor..."; }, 500);
+      }, 2500);
+    }
+
+    // A MÁGICA: Conexão com o Gemini
+    async function generatePetition() {
+      const btn = document.getElementById('btn-generate');
+      const emptyState = document.getElementById('empty-state');
+      const loadingState = document.getElementById('loading-state');
+      const generatedContent = document.getElementById('generated-content');
+      const resultActions = document.getElementById('result-actions');
+      const instrucaoTexto = document.getElementById('ai-instruction').value;
+
+      if (!instrucaoTexto) return alert("Por favor, digite as instruções para a IA.");
+
+      // Ativa Animação de Carregamento
+      btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Enviando para a IA...';
+      btn.classList.add('bg-slate-400', 'cursor-not-allowed', 'shadow-none');
+      btn.classList.remove('bg-slate-950', 'hover:bg-slate-800');
+      btn.disabled = true;
+      lucide.createIcons();
+
+      emptyState.classList.add('hidden-view');
+      generatedContent.classList.add('hidden-view');
+      resultActions.classList.remove('flex');
+      resultActions.classList.add('hidden');
+      loadingState.classList.remove('hidden-view');
+
+      try {
+        // COLOQUE SEU LINK DO WEBHOOK AQUI NA LINHA ABAIXO!
+        const resposta = await fetch("https://hook.us2.make.com/ilenlfe4616nu8sanahna1h35yt3qf20", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                instrucao: instrucaoTexto,
+                arquivo_status: "Web-only"
+            })
+        });
+
+        if (resposta.ok) {
+            // Pega a petição escrita pelo Gemini
+            const textoIA = await resposta.text(); 
+
+            // Exibe a petição na tela mantendo as quebras de linha e a fonte Serif (Estilo Jurídico)
+            generatedContent.innerHTML = `<pre style="white-space: pre-wrap; font-family: 'Times New Roman', Times, serif; font-size: 16px;">${textoIA}</pre>`;
+
+            // Volta o botão ao normal
+            btn.innerHTML = '<span id="btn-icon"><i data-lucide="sparkles" class="w-5 h-5 text-blue-400"></i></span> Gerar Peça Completa';
+            btn.classList.remove('bg-slate-400', 'cursor-not-allowed', 'shadow-none');
+            btn.classList.add('bg-slate-950', 'hover:bg-slate-800');
+            btn.disabled = false;
+            lucide.createIcons();
+
+            loadingState.classList.add('hidden-view');
+            generatedContent.classList.remove('hidden-view');
+            resultActions.classList.remove('hidden');
+            resultActions.classList.add('flex');
+        } else {
+            throw new Error("Falha no servidor da IA");
+        }
+
+      } catch (erro) {
+        console.error("Erro:", erro);
+        alert("Ops! Não conseguimos conectar com o servidor da IA. Verifique se o Make.com está ligado (ON).");
+        
+        // Em caso de erro, reseta tudo
+        emptyState.classList.remove('hidden-view');
+        loadingState.classList.add('hidden-view');
+        btn.innerHTML = '<span id="btn-icon"><i data-lucide="sparkles" class="w-5 h-5 text-blue-400"></i></span> Gerar Peça Completa';
+        btn.classList.remove('bg-slate-400', 'cursor-not-allowed', 'shadow-none');
+        btn.classList.add('bg-slate-950', 'hover:bg-slate-800');
+        btn.disabled = false;
+        lucide.createIcons();
+      }
+    }
+
+    function copyResultText() {
+        const textToCopy = document.getElementById('generated-content').innerText;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('Texto da petição copiado com sucesso!');
+        });
+    }
+
+    function exportResultDocx() {
+        alert('O download de arquivos .docx será liberado na versão final!');
+    }
+  </script>
+</body>
+</html>
